@@ -21,6 +21,8 @@
   "dependencies": {
     "@actions/core": "^1.8.0",
     "@actions/github": "^5.0.1",
-    "@vercel/ncc": "^0.33.4"
+    "@vercel/ncc": "^0.33.4",
+    "request": "^2.88.2",
+    "require": "^2.4.20"
   }
 }

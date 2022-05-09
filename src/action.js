@@ -1,19 +1,12 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+const core = require('@actions/core')
+const get_image_list = require('./get_image_list')
+
 
 async function run(){
-    const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
+    let app_name = core.getInput('app_name', {required: true})
+    await get_image_list.get_image_list(app_name)
 
-    const octokit = github.getOctokit(GITHUB_TOKEN);
-
-    const { context = {} } = github;
-    const { pull_request } = context.payload;
-
-    await octokit.rest.issues.createComment({
-        ...context.repo,
-        issue_number: pull_request.number,
-        body: "Thank you for submitting a pull request! We will try to review this as soon as we can"
-    });
 }
+
 
 run();
