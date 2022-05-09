@@ -3,14 +3,13 @@ description: 'Get Image List from Ops-monster'
 author: 'jambam <hs.cho@bucketplace.net>'
 inputs:
   app_name:
-    description: "Application name registered in ops-monster".
+    description: 'Application name registered in ops-monster'.
     required: true
-    default: ""
 outputs:
   first_repo:
-    description: "The first image repo registered in ops-monster"
+    description: 'The first image repo registered in ops-monster'
   second_repo:
-    description: "The second image repo registered in ops-monster"
+    description: 'The second image repo registered in ops-monster'
 runs:
   using: 'node12'
   main: 'dist/index.js'
