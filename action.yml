@@ -1,0 +1,12 @@
+name: 'Thank You Action'
+description: 'Say "Thank you" to new pull requests'
+author: 'hs.cho@bucketplace.net'
+
+inputs:
+  GITHUB_TOKEN:
+    description: 'Github token'
+    required: true
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
