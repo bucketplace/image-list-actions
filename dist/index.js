@@ -34785,25 +34785,55 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(2186)
 const request = __nccwpck_require__(8699);
 
+const app_name = core.getInput("app_name", { required: true });
 
+function getBaseUrl() {
+    let url = process.env.BASE_URL
+    if (!url)
+        core.setFailed('There is no url defined in the environment variables')
+    if (url.endsWith('/')) url = url.slice(0, -1)
+    return url
+}
+
+function getAuthToken() {
+    const token = process.env.AUTH_TOKEN
+    if (!token)
+        core.setFailed(
+            'There is no token defined in the environment variables'
+        )
+    return token
+}
+
+
+function doRequest(options) {
+    return new Promise(function (resolve, reject) {
+        request(options, function (error, response) {
+            if (!error && response.statusCode == 200) {
+                resolve(response);
+            } else {
+                reject(error);
+            }
+        });
+    });
+}
 async function run(){
-    const app_name = core.getInput("app_name", { required: true });
-    function getBaseUrl() {
-        let url = process.env.BASE_URL
-        if (!url)
-            core.setFailed('There is no url defined in the environment variables')
-        if (url.endsWith('/')) url = url.slice(0, -1)
-        return url
-    }
-
-    function getAuthToken() {
-        const token = process.env.AUTH_TOKEN
-        if (!token)
-            core.setFailed(
-                'There is no token defined in the environment variables'
-            )
-        return token
-    }
+    // const app_name = core.getInput("app_name", { required: true });
+    // function getBaseUrl() {
+    //     let url = process.env.BASE_URL
+    //     if (!url)
+    //         core.setFailed('There is no url defined in the environment variables')
+    //     if (url.endsWith('/')) url = url.slice(0, -1)
+    //     return url
+    // }
+    //
+    // function getAuthToken() {
+    //     const token = process.env.AUTH_TOKEN
+    //     if (!token)
+    //         core.setFailed(
+    //             'There is no token defined in the environment variables'
+    //         )
+    //     return token
+    // }
 
     let options;
     options = {
@@ -34814,12 +34844,15 @@ async function run(){
             'Authorization': `Token ${getAuthToken()}`
         },
     };
-
-    let res = request(options, function (error, response) {
-        if (error) throw new Error(error);
-        console.log(response.body);
+    doRequest(options).then(function (res) {
+        console.log(res.body);
     });
-    console.log(res.body)
+
+    // let res = request(options, function (error, response) {
+    //     if (error) throw new Error(error);
+    //     console.log(response.body);
+    // });
+    // console.log(res.body)
 
 }
 
