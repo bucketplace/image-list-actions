@@ -1,5 +1,4 @@
 const core = require('@actions/core')
-const get_image_list = require('./get_image_list')
 const request = require("request");
 
 
