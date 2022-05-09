@@ -21984,7 +21984,7 @@ var PrivateKey = __nccwpck_require__(9602);
 var pem = __nccwpck_require__(4324);
 var ssh = __nccwpck_require__(8927);
 var rfc4253 = __nccwpck_require__(8688);
-var dnssec = __nccwpck_require__(2296);
+var dnssec = __nccwpck_require__(3561);
 var putty = __nccwpck_require__(974);
 
 var DNSSEC_PRIVKEY_HEADER_PREFIX = 'Private-key-format: v1';
@@ -22096,7 +22096,7 @@ function write(key, options) {
 
 /***/ }),
 
-/***/ 2296:
+/***/ 3561:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 // Copyright 2017 Joyent, Inc.
@@ -26146,7 +26146,7 @@ formats['rfc4253'] = __nccwpck_require__(8688);
 formats['ssh'] = __nccwpck_require__(8927);
 formats['ssh-private'] = __nccwpck_require__(3923);
 formats['openssh'] = formats['ssh-private'];
-formats['dnssec'] = __nccwpck_require__(2296);
+formats['dnssec'] = __nccwpck_require__(3561);
 formats['putty'] = __nccwpck_require__(974);
 formats['ppk'] = formats['putty'];
 
@@ -26448,7 +26448,7 @@ formats['rfc4253'] = __nccwpck_require__(8688);
 formats['ssh-private'] = __nccwpck_require__(3923);
 formats['openssh'] = formats['ssh-private'];
 formats['ssh'] = formats['ssh-private'];
-formats['dnssec'] = __nccwpck_require__(2296);
+formats['dnssec'] = __nccwpck_require__(3561);
 formats['putty'] = __nccwpck_require__(974);
 
 function PrivateKey(opts) {
@@ -34421,49 +34421,11 @@ WError.prototype.cause = function we_cause(c)
 
 /***/ }),
 
-/***/ 3561:
-/***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
+/***/ 184:
+/***/ ((module) => {
 
-"use strict";
-__nccwpck_require__.r(__webpack_exports__);
-/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
-/* harmony export */   "get_image_list": () => (/* binding */ get_image_list)
-/* harmony export */ });
-const request = __nccwpck_require__(8699);
+module.exports = eval("require")("./get_image_list");
 
-function getBaseUrl() {
-    let url = process.env.BASE_URL
-    if (!url)
-        throw ReferenceError('There is no url defined in the environment variables')
-    if (url.endsWith('/')) url = url.slice(0, -1)
-    return url
-}
-
-function getAuthToken() {
-    const token = process.env.AUTH_TOKEN
-    if (!token)
-        throw ReferenceError(
-            'There is no token defined in the environment variables'
-        )
-    return token
-}
-
-async function get_image_list(app_name){
-    let options;
-    options = {
-        'method': 'GET',
-        'url': `${getBaseUrl()}/api/v1/applications/${app_name}/`,
-        'headers': {
-            'accept': 'application/json',
-            'Authorization': `Token ${getAuthToken()}`
-        },
-    };
-    console.log(options)
-    request(options, function (error, response) {
-        if (error) throw new Error(error);
-        console.log(response.body);
-    });
-};
 
 /***/ }),
 
@@ -34820,34 +34782,6 @@ module.exports = JSON.parse('["ac","com.ac","edu.ac","gov.ac","net.ac","mil.ac",
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nccwpck_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
@@ -34857,17 +34791,50 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(2186)
-const get_image_list = __nccwpck_require__(3561)
+const get_image_list = __nccwpck_require__(184)
+const request = __nccwpck_require__(8699);
 
 
 async function run(){
-    let app_name = core.getInput('app_name', {required: true})
-    await get_image_list.get_image_list(app_name)
+    const app_name = core.getInput("app_name", { required: true });
+    function getBaseUrl() {
+        let url = process.env.BASE_URL
+        if (!url)
+            core.setFailed('There is no url defined in the environment variables')
+        if (url.endsWith('/')) url = url.slice(0, -1)
+        return url
+    }
 
+    function getAuthToken() {
+        const token = process.env.AUTH_TOKEN
+        if (!token)
+            core.setFailed(
+                'There is no token defined in the environment variables'
+            )
+        return token
+    }
+
+    let options;
+    options = {
+        'method': 'GET',
+        'url': `${getBaseUrl()}/api/v1/applications/${app_name}/`,
+        'headers': {
+            'accept': 'application/json',
+            'Authorization': `Token ${getAuthToken()}`
+        },
+    };
+    console.log(options)
+    request(options, function (error, response) {
+        if (error) throw new Error(error);
+        console.log(response.body);
+    });
 }
 
 
-run();
+run().catch(err => {
+    console.error(err);
+    core.setFailed("Unexpected error");
+});
 })();
 
 module.exports = __webpack_exports__;
