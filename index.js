@@ -20,18 +20,18 @@ function getAuthToken() {
     return token
 }
 
-
-function doRequest(options) {
-    return new Promise(function (resolve, reject) {
-        request(options, function (error, response) {
-            if (!error && response.statusCode == 200) {
-                resolve(response);
-            } else {
-                reject(error);
-            }
-        });
-    });
-}
+//
+// function doRequest(options) {
+//     return new Promise(function (resolve, reject) {
+//         request(options, function (error, response) {
+//             if (!error && response.statusCode == 200) {
+//                 resolve(response);
+//             } else {
+//                 reject(error);
+//             }
+//         });
+//     });
+// }
 async function run(){
 
     let options;
@@ -43,9 +43,13 @@ async function run(){
             'Authorization': `Token ${getAuthToken()}`
         },
     };
-    let a = "";
-    a = doRequest(options).then(function (response) {});
-    console.log(a)
+    request(options, function(error, response, body){
+        if(error) console.log(error);
+        if(!error && response.statusCode == 200){
+            let data = body
+            console.log(data)
+        }
+    });
 
 
 }
