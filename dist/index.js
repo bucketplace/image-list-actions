@@ -34828,8 +34828,8 @@ async function run(){
         },
     };
     doRequest(options).then(function (res) {
-        res = res.body.json();
-        console.log(res.details.image_repo_list[0])
+        res = res.json();
+        console.log(res.body.detail.image_repo_list[0])
     });
 
 
