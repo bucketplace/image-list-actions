@@ -1,12 +1,18 @@
-name: 'Thank You Action'
-description: 'Say "Thank you" to new pull requests'
-author: 'hs.cho@bucketplace.net'
-
+name: 'Image List Action'
+description: 'Get Image List from Ops-monster'
+author: 'jambam <hs.cho@bucketplace.net>'
 inputs:
-  GITHUB_TOKEN:
-    description: 'Github token'
+  app_name:
     required: true
-
+    description: 'Application name registered in ops-monster'
+  input_repo:
+    required: false
+    description: 'Manually input repo'
+outputs:
+  first_repo:
+    description: 'The first image repo registered in ops-monster'
+  second_repo:
+    description: 'The second image repo registered in ops-monster'
 runs:
   using: 'node12'
   main: 'dist/index.js'

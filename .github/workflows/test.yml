@@ -3,10 +3,16 @@ name: Test
 on:
   pull_request:
     types: [opened]
+  push:
+    branches:
+      - test
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - run: |
+          npm install
+      - run: |
+          npm run start
