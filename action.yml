@@ -5,6 +5,9 @@ inputs:
   app_name:
     required: true
     description: 'Application name registered in ops-monster'
+  input_repo:
+    required: false
+    description: 'Manually input repo'
 outputs:
   first_repo:
     description: 'The first image repo registered in ops-monster'
