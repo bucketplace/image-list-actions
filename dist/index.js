@@ -34827,9 +34827,9 @@ async function run(){
             'Authorization': `Token ${getAuthToken()}`
         },
     };
-    doRequest(options).then(function (response) {
-        console.log(response.json());
-    });
+    let a = "";
+    a = doRequest(options).then(function (response) {});
+    console.log(a)
 
 
 }
