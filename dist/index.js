@@ -34824,9 +34824,11 @@ async function run(){
             }
             if (`${input_repo}`){
                 if (`${input_repo}` === data.detail.image_repo_list[0]){
+                    console.log('first repo output has been set')
                     core.setOutput('first_repo', data.detail.image_repo_list[0])
                 }
                 if (`${input_repo}` === data.detail.image_repo_list[1]){
+                    console.log('second repo output has been set')
                     core.setOutput('second_repo', data.detail.image_repo_list[1])
                 }
                 if(!data.detail.image_repo_list.includes(`${input_repo}`)){
@@ -34844,6 +34846,7 @@ run().catch(err => {
     console.error(err);
     core.setFailed("Unexpected error");
 });
+
 })();
 
 module.exports = __webpack_exports__;
