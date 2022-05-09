@@ -44,8 +44,8 @@ async function run(){
         },
     };
     doRequest(options).then(function (res) {
-        res = res.json();
-        console.log(res.body.detail.image_repo_list[0])
+        const dataJson = JSON.parse(res.toString());
+        console.log(dataJson.body);
     });
 
 
