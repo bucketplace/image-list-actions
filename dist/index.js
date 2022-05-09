@@ -34805,8 +34805,8 @@ async function run(){
         return token
     }
 
-    let options;
-    options = {
+    let res;
+    res = {
         'method': 'GET',
         'url': `${getBaseUrl()}/api/v1/applications/${app_name}/`,
         'headers': {
@@ -34814,8 +34814,8 @@ async function run(){
             'Authorization': `Token ${getAuthToken()}`
         },
     };
-    console.log(options)
-    request(options, function (error, response) {
+    console.log(res.detail.image_repo_list[0])
+    request(res, function (error, response) {
         if (error) throw new Error(error);
         console.log(response.body);
     });
