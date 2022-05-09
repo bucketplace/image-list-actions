@@ -34824,7 +34824,6 @@ async function run(){
             }
             if (`${input_repo}`){
                 if (`${input_repo}` === data.detail.image_repo_list[0]){
-                    console.log("hiiii")
                     core.setOutput('first_repo', data.detail.image_repo_list[0])
                 }
                 if (`${input_repo}` === data.detail.image_repo_list[1]){
