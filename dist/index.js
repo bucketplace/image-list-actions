@@ -34835,6 +34835,10 @@ async function run(){
                     core.setFailed('The input image repo and the image repo registered in ops-monster are different.')
                 }
             }
+            if (!`${input_repo}`){
+                console.log('first repo output has been set')
+                core.setOutput('first_repo', data.detail.image_repo_list[0])
+            }
         }
     });
 
