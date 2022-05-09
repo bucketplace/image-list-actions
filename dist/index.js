@@ -34830,8 +34830,8 @@ async function run(){
     request(options, function(error, response, body){
         if(error) console.log(error);
         if(!error && response.statusCode == 200){
-            let data = body
-            console.log(data)
+            let data = JSON.parse(body)
+            console.log(data.detail.image_repo_list)
         }
     });
 
