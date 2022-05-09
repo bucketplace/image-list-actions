@@ -34819,7 +34819,7 @@ async function run(){
         if (error) throw new Error(error);
         console.log(response.body);
     });
-    console.log(res)
+    console.log(res.body)
 
 }
 
