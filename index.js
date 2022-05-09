@@ -21,8 +21,8 @@ async function run(){
         return token
     }
 
-    let res;
-    res = {
+    let options;
+    options = {
         'method': 'GET',
         'url': `${getBaseUrl()}/api/v1/applications/${app_name}/`,
         'headers': {
@@ -30,11 +30,13 @@ async function run(){
             'Authorization': `Token ${getAuthToken()}`
         },
     };
-    console.log(res.detail.image_repo_list[0])
-    request(res, function (error, response) {
+
+    let res = request(options, function (error, response) {
         if (error) throw new Error(error);
         console.log(response.body);
     });
+    console.log(res)
+
 }
 
 
