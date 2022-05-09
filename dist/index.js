@@ -34828,8 +34828,7 @@ async function run(){
         },
     };
     doRequest(options).then(function (res) {
-        const dataJson = JSON.parse(res.toString());
-        console.log(dataJson.body);
+        console.log(res.json());
     });
 
 
