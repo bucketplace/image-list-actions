@@ -34822,15 +34822,15 @@ async function run(){
             if (typeof data.detail.image_repo_list === 'undefined' || data.detail.image_repo_list.length === 0){
                 core.setFailed('There is no data for image repo.')
             }
-            if (input_repo){
-                if (input_repo === data.detail.image_repo_list[0]){
+            if (`${input_repo}`){
+                if (`${input_repo}` === data.detail.image_repo_list[0]){
                     console.log("hiiii")
                     core.setOutput('first_repo', data.detail.image_repo_list[0])
                 }
-                if (input_repo === data.detail.image_repo_list[1]){
+                if (`${input_repo}` === data.detail.image_repo_list[1]){
                     core.setOutput('second_repo', data.detail.image_repo_list[1])
                 }
-                if(!data.detail.image_repo_list.includes("input_repo")){
+                if(!data.detail.image_repo_list.includes(`${input_repo}`)){
                     core.setFailed('The input image repo and the image repo registered in ops-monster are different.')
                 }
             }
