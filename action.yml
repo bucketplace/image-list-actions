@@ -9,10 +9,8 @@ inputs:
     required: false
     description: 'Manually input repo'
 outputs:
-  first_repo:
-    description: 'The first image repo registered in ops-monster'
-  second_repo:
-    description: 'The second image repo registered in ops-monster'
+  image_repo:
+    description: 'Image repo to register with ECR'
 runs:
   using: 'node12'
   main: 'dist/index.js'
