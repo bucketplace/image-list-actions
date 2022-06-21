@@ -25,7 +25,7 @@ async function run(){
     let options;
     options = {
         'method': 'GET',
-        'url': `${getBaseUrl()}/api/v1/applications/${app_name}/`,
+        'url': `${getBaseUrl()}/v1/applications/${app_name}/`,
         'headers': {
             'accept': 'application/json',
             'Authorization': `Token ${getAuthToken()}`
