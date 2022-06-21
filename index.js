@@ -39,21 +39,17 @@ async function run(){
                 core.setFailed('There is no data for image repo.')
             }
             if (`${input_repo}`){
-                if (`${input_repo}` === data.detail.image_repo_list[0]){
-                    console.log('first repo output has been set')
-                    core.setOutput('first_repo', data.detail.image_repo_list[0])
-                }
-                if (`${input_repo}` === data.detail.image_repo_list[1]){
-                    console.log('second repo output has been set')
-                    core.setOutput('second_repo', data.detail.image_repo_list[1])
-                }
                 if(!data.detail.image_repo_list.includes(`${input_repo}`)){
                     core.setFailed('The input image repo and the image repo registered in ops-monster are different.')
                 }
+                else{
+                    console.log('Input repo has been set as output')
+                    core.setOutput('image_repo', `${input_repo}`)
+                }
             }
             if (!`${input_repo}`){
-                console.log('first repo output has been set')
-                core.setOutput('first_repo', data.detail.image_repo_list[0])
+                console.log('first repo has been set as output')
+                core.setOutput('image_repo', data.detail.image_repo_list[0])
             }
         }
     });
