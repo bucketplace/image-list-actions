@@ -5,9 +5,6 @@ inputs:
   app_name:
     required: true
     description: 'Application name registered in ops-monster'
-#  base_url:
-#    required: true
-#    description: 'Opsmonster Base Url'
   input_repo:
     required: false
     description: 'Manually input repo'
