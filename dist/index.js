@@ -35605,11 +35605,10 @@ const request = __nccwpck_require__(8699);
 
 async function run(){
     const app_name = core.getInput("app_name", { required: true });
-    const base_url = core.getInput("base_url", { required: false });
     const input_repo = core.getInput("input_repo", { required: false });
 
     function getBaseUrl() {
-        let url = `${base_url}`
+        let url = process.env.BASE_URL
         if (!url)
             core.setFailed('There is no url defined in the environment variables')
         if (url.endsWith('/')) url = url.slice(0, -1)
