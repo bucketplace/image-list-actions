@@ -22,12 +22,13 @@ async function run(){
             )
         return token
     }
-    console.log('Url', `${getBaseUrl()}/v1/applications/${app_name}/`)
+    const baseUrl = getBaseUrl()
+    console.log('Url', `${baseUrl}/v1/applications/${app_name}/`)
 
     let options;
     options = {
         'method': 'GET',
-        'url': `${getBaseUrl()}/v1/applications/${app_name}/`,
+        'url': `${baseUrl}/v1/applications/${app_name}/`,
         'headers': {
             'accept': 'application/json',
             'Authorization': `Token ${getAuthToken()}`
