@@ -35623,6 +35623,7 @@ async function run(){
             )
         return token
     }
+    console.log('Url', `${getBaseUrl()}/v1/applications/${app_name}/`)
 
     let options;
     options = {
@@ -35633,6 +35634,7 @@ async function run(){
             'Authorization': `Token ${getAuthToken()}`
         },
     };
+    console.log('options', options)
     request(options, function(error, response, body){
         if(error) console.log(error);
         if(!error && response.statusCode == 200){
