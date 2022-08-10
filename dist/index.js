@@ -35634,7 +35634,6 @@ async function run(){
             'Authorization': `Token ${getAuthToken()}`
         },
     };
-    console.log('options', options)
     request(options, function(error, response, body){
         if(error) console.log(error);
         if(!error && response.statusCode == 200){
