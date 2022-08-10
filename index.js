@@ -36,20 +36,19 @@ async function run(){
         if(!error && response.statusCode == 200){
             let data = JSON.parse(body)
             if (typeof data.detail.image_repo_list === 'undefined' || data.detail.image_repo_list.length === 0){
-                core.setFailed('### There is no data for image repo. ###')
+                core.setFailed('There is no data for image repo.')
             }
             if (`${input_repo}`){
                 if(!data.detail.image_repo_list.includes(`${input_repo}`)){
-                    core.setFailed('### The input image repo and the image repo registered in ops-monster are different. ###')
+                    core.setFailed('The input image repo and the image repo registered in ops-monster are different.')
                 }
                 else{
-                    console.log('### Input repo has been set as output ###')
+                    console.log('Input repo has been set as output')
                     core.setOutput('image_repo', `${input_repo}`)
                 }
             }
             if (!`${input_repo}`){
-                console.log('### first repo has been set as output ###')
-                console.log('### ECR Repo Name: ', data.detail.image_repo_list[0], ' ###')
+                console.log('first repo has been set as output')
                 core.setOutput('image_repo', data.detail.image_repo_list[0])
             }
         }
